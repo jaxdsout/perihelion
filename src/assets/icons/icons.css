@@ -1,0 +1,15 @@
+.icon {
+  color: white;
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+.icon:hover {
+  color: rgba(255, 255, 255, 0.415)
+}
+
+.iconContainer {
+  padding: 8px 4px;
+  border: 1px white solid;
+  border-radius: 11px;
+}
