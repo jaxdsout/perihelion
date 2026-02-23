@@ -1,0 +1,134 @@
+/* ─── Auth pages shared styles ─── */
+.authPage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #111;
+}
+
+.authCard {
+  background: #1f1f1f;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 40px 48px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.authCard h2 {
+  color: #fff;
+  font-family: "Tigeroa", sans-serif;
+  font-size: 1.8rem;
+  margin: 0 0 6px 0;
+  letter-spacing: 0.04em;
+}
+
+.authCard .authSubtitle {
+  color: #888;
+  font-size: 0.875rem;
+  margin: 0 0 28px 0;
+}
+
+.authField {
+  margin-bottom: 18px;
+}
+
+.authField label {
+  display: block;
+  color: #aaa;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+.authField input {
+  width: 100%;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.95rem;
+  padding: 10px 12px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.authField input:focus {
+  border-color: #555;
+}
+
+.authBtn {
+  width: 100%;
+  background: #fff;
+  color: #111;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 12px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.15s;
+}
+
+.authBtn:hover {
+  background: #ddd;
+}
+
+.authBtn:disabled {
+  background: #555;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.authLinks {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: center;
+}
+
+.authLinks a {
+  color: #888;
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.authLinks a:hover {
+  color: #fff;
+}
+
+.authMessage {
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.authMessage.success {
+  background: rgba(34, 197, 94, 0.12);
+  color: #4ade80;
+  border: 1px solid rgba(74, 222, 128, 0.25);
+}
+
+.authMessage.error {
+  background: rgba(239, 68, 68, 0.12);
+  color: #f87171;
+  border: 1px solid rgba(248, 113, 113, 0.25);
+}
+
+.authName {
+  display: flex;
+  gap: 12px;
+}
+
+.authName .authField {
+  flex: 1;
+}

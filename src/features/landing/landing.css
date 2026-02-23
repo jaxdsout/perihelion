@@ -1,0 +1,169 @@
+/* ─── Landing page ─── */
+.landing {
+  position: relative;
+  min-height: 100vh;
+  background: #ffb412;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.landingOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.8) 100%);
+  z-index: 1;
+}
+
+/* Nav */
+.landingNav {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 48px;
+}
+
+.landingLogo {
+  font-family: "Alpino-Bold";
+  font-weight: bolder;
+  font-size: 2rem;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+
+.landingNavLinks {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.landingNavLinks a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  transition: color 0.15s;
+}
+
+.landingNavLinks a:hover {
+  color: #fff;
+}
+
+.landingNavLinks .navCta {
+  background: #fff;
+  color: #111;
+  border-radius: 6px;
+  padding: 8px 20px;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.landingNavLinks .navCta:hover {
+  background: #ddd;
+  color: #111;
+}
+
+/* Hero */
+.landingHero {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 24px;
+}
+
+.landingHero h1 {
+  font-family: "Tigeroa", sans-serif;
+  font-size: clamp(3rem, 8vw, 7rem);
+  color: #fff;
+  margin: 0 0 16px 0;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.landingHero p {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  max-width: 520px;
+  margin: 0 auto 36px;
+  line-height: 1.6;
+}
+
+.landingHeroBtns {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.heroBtnPrimary {
+  background: #fff;
+  color: #111;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 14px 32px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.heroBtnPrimary:hover {
+  background: #ddd;
+}
+
+.heroBtnSecondary {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 14px 32px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.heroBtnSecondary:hover {
+  border-color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Features strip */
+.landingFeatures {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 48px 48px 60px;
+  flex-wrap: wrap;
+}
+
+.landingFeature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  max-width: 140px;
+  text-align: center;
+}
+
+.landingFeature i {
+  font-size: 1.6rem;
+  color: rgba(255, 255, 255, 0.4);
+}

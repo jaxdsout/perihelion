@@ -1,0 +1,146 @@
+/* ─── Properties / Search ─── */
+.searchPage {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+}
+
+.searchSidebar {
+  width: 320px;
+  flex-shrink: 0;
+  background: #111;
+  border-right: 1px solid #2a2a2a;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.searchSidebarHeader {
+  padding: 16px 18px;
+  border-bottom: 1px solid #2a2a2a;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.searchSidebarHeader h3 {
+  color: #fff;
+  margin: 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.searchInput {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.82rem;
+  padding: 8px 12px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.searchInput:focus {
+  border-color: #555;
+}
+
+.searchHint {
+  color: #555;
+  font-size: 0.72rem;
+  padding: 10px 18px;
+  font-style: italic;
+}
+
+.propList {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 0;
+}
+
+.propItem {
+  padding: 12px 18px;
+  border-bottom: 1px solid #1a1a1a;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.propItem:hover,
+.propItem.active {
+  background: #1a1a1a;
+}
+
+.propItemAddress {
+  color: #ccc;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.propItemMeta {
+  color: #555;
+  font-size: 0.72rem;
+  display: flex;
+  gap: 10px;
+}
+
+/* Map */
+.searchMap {
+  flex: 1;
+  position: relative;
+}
+
+.mapContainer {
+  width: 100%;
+  height: 100%;
+}
+
+/* Popup in mapbox */
+.propPopup {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 12px 16px;
+  min-width: 180px;
+}
+
+.propPopup h4 {
+  color: #fff;
+  margin: 0 0 6px 0;
+  font-size: 0.85rem;
+}
+
+.propPopup p {
+  color: #888;
+  margin: 2px 0;
+  font-size: 0.75rem;
+}
+
+/* Draw controls hint */
+.drawHint {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.75);
+  color: #aaa;
+  font-size: 0.75rem;
+  padding: 7px 14px;
+  border-radius: 20px;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.polygonCount {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(0,0,0,0.8);
+  color: #ccc;
+  font-size: 0.75rem;
+  padding: 6px 12px;
+  border-radius: 6px;
+}

@@ -1,0 +1,48 @@
+@font-face {
+  font-family: "Alpino-Black";
+  src: url("../assets/fonts/Alpino/Alpino-Black.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Alpino-Bold";
+  src: url("../assets/fonts/Alpino/Alpino-Bold.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Alpino-Medium";
+  src: url("../assets/fonts/Alpino/Alpino-Medium.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Alpino";
+  src: url("../assets/fonts/Alpino/Alpino-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Alpino-Light";
+  src: url("../assets/fonts/Alpino/Alpino-Light.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0a0a0a;
+  margin: 0;
+  font-family: "Alpino", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}

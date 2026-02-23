@@ -1,15 +1,10 @@
 import { useState } from "react";
+import { calculateNER } from "./client-actions";
+import type { CalculatorState } from "./types";
 
-interface FormData {
-  lease_term: number | "";
-  rent_free: number | "";
-  cash_allowance: number | "";
-  monthly_rent: number | "";
-  net_effective: number;
-}
 
 export default function Calculator() {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<CalculatorState>({
     lease_term: 0,
     rent_free: 0,
     cash_allowance: 0,
@@ -19,28 +14,11 @@ export default function Calculator() {
 
   const { lease_term, rent_free, cash_allowance, monthly_rent, net_effective } = formData;
 
-  const calculateNER = (data: FormData): number => {
-    const { lease_term, rent_free, cash_allowance, monthly_rent } = data;
-
-    if (Number(lease_term) > 0) {
-      return cash_allowance
-        ? Math.round(
-          (((Number(monthly_rent) * (Number(lease_term) - Number(rent_free))) - Number(cash_allowance)) /
-            Number(lease_term)) *
-          100
-        ) / 100
-        : Math.round(
-          ((Number(monthly_rent) * (Number(lease_term) - Number(rent_free))) / Number(lease_term)) * 100
-        ) / 100;
-    }
-    return 0;
-  };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     const numericValue = value === "" ? "" : parseFloat(value);
     const updatedFormData = { ...formData, [name]: numericValue };
-    const updatedNetEffective = calculateNER(updatedFormData as FormData);
+    const updatedNetEffective = calculateNER(updatedFormData as CalculatorState);
 
     setFormData({
       ...updatedFormData,
