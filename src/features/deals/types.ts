@@ -1,16 +1,31 @@
+export type DealStatus = 'not' | 'pend' | 'over' | 'paid';
+
+export const DEAL_STATUS_LABELS: Record<DealStatus, string> = {
+  not: 'Not Invoiced',
+  pend: 'Pending',
+  over: 'Overdue',
+  paid: 'Paid',
+};
+
 export interface Deal {
   id: number;
   agent: number;
-  client: { id: number; first_name: string; last_name: string };
-  property: { id: number; address: string };
-  rent: string;
-  rate: string;
+  client: number;
+  client_name: string;
+  property: number;
+  prop_name: string;
+  rent: number;
+  rate: number | null;
   commission: string;
-  flat_fee: string;
+  flat_fee: string | null;
+  status: DealStatus;
   move_date: string;
   unit_no: string;
   lease_term: string;
-  is_paid: boolean;
+  deal_date: string;
+  invoice_date: string | null;
+  overdue_date: string | null;
+  lease_end_date: string | null;
 }
 
 export interface DealFormData {
@@ -18,8 +33,10 @@ export interface DealFormData {
   property: number | "";
   rent: string;
   rate: string;
+  commission: string;
   flat_fee: string;
   move_date: string;
   unit_no: string;
   lease_term: string;
+  agent: number | "";
 }

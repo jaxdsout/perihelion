@@ -1,9 +1,12 @@
 export interface List {
   id: number;
   agent: number;
-  client: { id: number; first_name: string; last_name: string };
+  client: number;
+  client_name: string;
+  agent_name: string;
   uuid: string;
-  created_at: string;
+  date: string;
+  options: Option[];
 }
 
 export interface ListFormData {
@@ -13,7 +16,13 @@ export interface ListFormData {
 export interface Option {
   id: number;
   list: number;
-  property: { id: number; address: string; borough: string };
+  property: number;
+  address: string;
+  prop_name: string;
+  prop_image: string | null;
+  longitude: number | null;
+  latitude: number | null;
+  website: string | null;
   price: string;
   unit_number: string;
   layout: string;

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useAuthStore } from "../store";
 import "../auth.css";
+import { AuthPage } from "@/pages/auth/AuthPage";
 
 export default function Activate() {
   const { uid, token } = useParams<{ uid: string; token: string }>();
@@ -11,31 +12,36 @@ export default function Activate() {
     if (uid && token) activate(uid, token);
   }, [uid, token, activate]);
 
+  const links = activateSuccess ? (
+    <ActivateSuccessLinks />
+  ) : activateFail ? (
+    <ActivateFailLinks />
+  ) : null;
+
   return (
-    <div className="authPage">
-      <div className="authCard">
-        <h2>Account Activation</h2>
+    <AuthPage
+      title="Account Activation"
+      subtitle={loading ? "Activating your account..." : null}
+      error={activateFail ? (error as string) : ""}
+      message={activateSuccess ? (message as string) : ""}
+      form={null}
+      links={links}
+    />
+  );
+}
 
-        {loading && <p className="authSubtitle">Activating your account...</p>}
+function ActivateSuccessLinks() {
+  return (
+    <div className="authLinks">
+      <Link to="/login">Go to Sign In</Link>
+    </div>
+  );
+}
 
-        {activateSuccess && (
-          <>
-            {message && <div className="authMessage success">{message}</div>}
-            <div className="authLinks">
-              <Link to="/login">Go to Sign In</Link>
-            </div>
-          </>
-        )}
-
-        {activateFail && (
-          <>
-            {error && <div className="authMessage error">{error}</div>}
-            <div className="authLinks">
-              <Link to="/signup">Create a new account</Link>
-            </div>
-          </>
-        )}
-      </div>
+function ActivateFailLinks() {
+  return (
+    <div className="authLinks">
+      <Link to="/signup">Create a new account</Link>
     </div>
   );
 }

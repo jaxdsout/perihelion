@@ -120,6 +120,7 @@ export const useAuthStore = create<
   loadUser: async () => {
     try {
       const { data } = await api.get(`/users/me/`);
+      console.log("user data", data)
       set({ user: data });
     } catch {
       set({ user: null });

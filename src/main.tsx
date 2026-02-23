@@ -7,18 +7,18 @@ import ConfirmPassword from "./features/auth/components/ConfirmPassword";
 import Login from "./features/auth/components/Login";
 import ResetPassword from "./features/auth/components/ResetPassword";
 import SignUp from "./features/auth/components/SignUp";
-import Landing from "./features/landing/Landing";
+import Landing from "./pages/landing/Landing";
 
 import Calculator from "./features/calculator/Calculator";
 import Cards from "./features/cards/Cards";
 import ClientList from "./features/clientlist/ClientList";
 import Clients from "./features/clients/Clients";
-import DashboardHome from "./features/dashboard/components/Home";
-import DashboardLayout from "./features/dashboard/components/Layout";
-import Deals from "./features/deals/components/Deals";
+import DashboardHome from "./features/dashboard/Home";
+import Deals from "./features/deals/Deals";
 import ESign from "./features/eSign/ESign";
 import Lists from "./features/lists/Lists";
 import Properties from "./features/properties/Properties";
+import DashboardLayout from "./pages/dashboard/Dashboard";
 
 createRoot(document.getElementById('root')!).render(
   <Router>

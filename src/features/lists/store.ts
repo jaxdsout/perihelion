@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import api from "../../globals/api";
-import type { Option, OptionFormData } from "../options/types";
-import type { List } from "./types";
+import type { List, Option, OptionFormData } from "./types";
 
 interface ListsState {
   lists: List[];
@@ -48,7 +47,10 @@ export const useListsStore = create<ListsState>((set, get) => ({
   deleteList: async (id) => {
     try {
       await api.delete(`/lists/${id}/`);
-      set((s) => ({ lists: s.lists.filter((l) => l.id !== id), activeList: s.activeList?.id === id ? null : s.activeList }));
+      set((s) => ({
+        lists: s.lists.filter((l) => l.id !== id),
+        activeList: s.activeList?.id === id ? null : s.activeList,
+      }));
     } catch { /* noop */ }
   },
 
@@ -63,7 +65,11 @@ export const useListsStore = create<ListsState>((set, get) => ({
 
   addOption: async (listId, payload) => {
     try {
-      const { data } = await api.post("/options/", { ...payload, list: listId });
+      const { data } = await api.post("/options/", {
+        ...payload,
+        list: listId,
+        property: Number(payload.property),
+      });
       set((s) => ({ options: [...s.options, data] }));
     } catch { /* noop */ }
   },
@@ -77,7 +83,10 @@ export const useListsStore = create<ListsState>((set, get) => ({
 
   updateOption: async (optionId, payload) => {
     try {
-      const { data } = await api.patch(`/options/${optionId}/`, payload);
+      const { data } = await api.patch(`/options/${optionId}/`, {
+        ...payload,
+        ...(payload.property !== undefined && { property: Number(payload.property) }),
+      });
       set((s) => ({ options: s.options.map((o) => (o.id === optionId ? data : o)) }));
     } catch { /* noop */ }
   },

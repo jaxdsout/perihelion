@@ -1,9 +1,11 @@
+import { useAuthStore } from "@/features/auth/store";
 import { Chart } from "chart.js";
 import { useEffect, useRef } from "react";
-import "../dashboard.css";
-import { useDashboardStore } from "../store";
-import { BarGraph, DonutGraph } from "./Graphs";
-import Tasks from "./Tasks";
+import { BarGraph, DonutGraph } from "./components/Graphs";
+import Tasks from "./components/Tasks";
+import { UpcomingMoveIns } from "./components/Upcoming";
+import "./dashboard.css";
+import { useDashboardStore } from "./store";
 
 export default function DashboardHome() {
   const { upcoming, loadDashboard } = useDashboardStore();
@@ -11,6 +13,9 @@ export default function DashboardHome() {
   const donutRef = useRef<HTMLCanvasElement>(null);
   const barChart = useRef<Chart | null>(null);
   const donutChart = useRef<Chart | null>(null);
+
+  const { user } = useAuthStore.getState();
+  console.log("user", user)
 
   useEffect(() => {
     loadDashboard();
@@ -40,30 +45,7 @@ export default function DashboardHome() {
           <h3>Upcoming Move-Ins</h3>
         </div>
         <div className="dashPanelBody">
-          {upcoming.length === 0 ? (
-            <p className="emptyState">No upcoming deals.</p>
-          ) : (
-            <table className="upcomingTable">
-              <thead>
-                <tr>
-                  <th>Client</th>
-                  <th>Property</th>
-                  <th>Move Date</th>
-                  <th>Commission</th>
-                </tr>
-              </thead>
-              <tbody>
-                {upcoming.map((d) => (
-                  <tr key={d.id}>
-                    <td>{d.client_name}</td>
-                    <td>{d.prop_name}</td>
-                    <td>{d.move_date}</td>
-                    <td className="upcomingCommission">${d.commission}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
+          <UpcomingMoveIns />
         </div>
 
         <div className="chartsRow">

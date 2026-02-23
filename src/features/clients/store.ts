@@ -1,13 +1,13 @@
 import { create } from "zustand";
 import api from "../../globals/api";
-import type { Client } from "./types";
+import type { Client, ClientFormData } from "./types";
 
 interface ClientsState {
   clients: Client[];
   loading: boolean;
   clientTaken: boolean;
   loadClients: () => Promise<void>;
-  createClient: (data: Omit<Client, "id" | "agent">) => Promise<void>;
+  createClient: (data: ClientFormData) => Promise<void>;
   deleteClient: (id: number) => Promise<void>;
   verifyClient: (email: string) => Promise<void>;
 }

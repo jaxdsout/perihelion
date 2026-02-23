@@ -2,7 +2,6 @@
 .landing {
   position: relative;
   min-height: 100vh;
-  background: #ffb412;
   overflow: hidden;
   display: flex;
   flex-direction: column;

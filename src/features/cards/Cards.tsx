@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useClientsStore } from "../clients/store";
+import { usePropertiesStore } from "../properties/store";
 import "./cards.css";
 import { useCardsStore } from "./store";
 import type { Card } from "./types";
@@ -9,7 +10,7 @@ type ModalMode = "new" | "detail" | null;
 const emptyForm = {
   client: "" as number | "",
   property: "" as number | "",
-  body: "",
+  msg: "",
   interested: "",
   move_by: "",
 };
@@ -24,6 +25,7 @@ const interestedLabel = (v: string) => {
 export default function Cards() {
   const { cards, loading, loadCards, createCard, deleteCard } = useCardsStore();
   const { clients, loadClients } = useClientsStore();
+  const { properties, loadProperties } = usePropertiesStore();
 
   const [modal, setModal] = useState<ModalMode>(null);
   const [selected, setSelected] = useState<Card | null>(null);
@@ -34,7 +36,8 @@ export default function Cards() {
   useEffect(() => {
     loadCards();
     if (clients.length === 0) loadClients();
-  }, [loadCards, loadClients, clients.length]);
+    if (properties.length === 0) loadProperties();
+  }, [loadCards, loadClients, loadProperties, clients.length, properties.length]);
 
   const openNew = () => { setForm(emptyForm); setModal("new"); };
   const openDetail = (c: Card) => { setSelected(c); setModal("detail"); };
@@ -80,13 +83,11 @@ export default function Cards() {
             return (
               <div key={c.id} className="cardTile" onClick={() => openDetail(c)}>
                 <div className="cardTileHeader">
-                  <span className="cardTileName">{c.client.first_name} {c.client.last_name}</span>
+                  <span className="cardTileName">{c.client_name}</span>
                   <span className="cardTileStatus" style={{ color: label.color }}>{label.text}</span>
                 </div>
-                {c.property?.address && (
-                  <div className="cardTileAddress">{c.property.address}</div>
-                )}
-                {c.body && <p className="cardTileBody">{c.body}</p>}
+                {c.prop_name && <div className="cardTileAddress">{c.prop_name}</div>}
+                {c.msg && <p className="cardTileBody">{c.msg}</p>}
                 {c.move_by && <div className="cardTileMeta">Move by: {c.move_by}</div>}
               </div>
             );
@@ -94,7 +95,6 @@ export default function Cards() {
         </div>
       )}
 
-      {/* New card modal */}
       {modal === "new" && (
         <div className="modalOverlay" onClick={closeModal}>
           <div className="modalCard" onClick={(e) => e.stopPropagation()}>
@@ -110,8 +110,17 @@ export default function Cards() {
                 </select>
               </div>
               <div className="modalField">
-                <label>Notes / Body</label>
-                <textarea name="body" value={form.body} onChange={handleChange} />
+                <label>Property</label>
+                <select name="property" value={form.property} onChange={handleChange}>
+                  <option value="">No property...</option>
+                  {properties.map((p) => (
+                    <option key={p.id} value={p.id}>{p.address}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="modalField">
+                <label>Notes</label>
+                <textarea name="msg" value={form.msg} onChange={handleChange} />
               </div>
               <div className="modalField">
                 <label>Interest Level</label>
@@ -135,15 +144,14 @@ export default function Cards() {
         </div>
       )}
 
-      {/* Detail modal */}
       {modal === "detail" && selected && (
         <div className="modalOverlay" onClick={closeModal}>
           <div className="modalCard" onClick={(e) => e.stopPropagation()}>
-            <h3>{selected.client.first_name} {selected.client.last_name}</h3>
+            <h3>{selected.client_name}</h3>
             <div className="detailGrid">
               <div className="detailItem">
                 <label>Property</label>
-                <span>{selected.property?.address || "—"}</span>
+                <span>{selected.prop_name || "—"}</span>
               </div>
               <div className="detailItem">
                 <label>Interest</label>
@@ -156,10 +164,10 @@ export default function Cards() {
                 <span>{selected.move_by || "—"}</span>
               </div>
             </div>
-            {selected.body && (
+            {selected.msg && (
               <div className="modalField">
                 <label>Notes</label>
-                <p style={{ color: "#ccc", fontSize: "0.875rem", margin: 0 }}>{selected.body}</p>
+                <p style={{ color: "#ccc", fontSize: "0.875rem", margin: 0 }}>{selected.msg}</p>
               </div>
             )}
             <div className="modalActions">

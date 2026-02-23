@@ -26,7 +26,11 @@ export const useCardsStore = create<CardsState>((set) => ({
 
   createCard: async (payload) => {
     try {
-      const { data } = await api.post("/cards/", payload);
+      const { data } = await api.post("/cards/", {
+        ...payload,
+        client: Number(payload.client),
+        property: payload.property ? Number(payload.property) : null,
+      });
       set((s) => ({ cards: [...s.cards, data] }));
     } catch { /* noop */ }
   },
